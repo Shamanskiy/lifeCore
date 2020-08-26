@@ -2,7 +2,6 @@
 
 int main(void)
 {
-    LifeCore lifeCore;
-    lifeCore.sayHi();
+    LifeCore lifeCore(10,10);
     return 0;
 }
