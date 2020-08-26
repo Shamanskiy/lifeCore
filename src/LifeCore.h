@@ -24,10 +24,15 @@ public:
     LifeCore(LifeCore&&) = default;
     LifeCore& operator=(LifeCore&&) = default;
 
+    // get number of rows in the game field
+    inline int numRows() const { return rows; }
+    // get number of columnss in the game field
+    inline int numCols() const { return cols; }
+
     // get state of cell at row i and column j
-    bool getCellState(int i, int j) const;
+    inline bool getCellState(int i, int j) const { return cells[i*cols + j]; }
     // flip cell state from dead to alive (if dead) or from alive to dead (if alive)
-    void flipCellState(int i, int j);
+    inline void flipCellState(int i, int j) { cells[i*cols + j] = !cells[i*cols + j]; }
 
     // compute next state of the game
     void updateCells();
