@@ -15,7 +15,23 @@ void createKoksGalaxy(LifeCore& lc)
         return;
     }
 
+    int centerI = (rows-1)/2;
+    int centerJ = (cols-1)/2;
 
+    for (int i = 0; i < 6; ++i)
+    {
+        lc.flipCellState(centerI - 4 + i, centerJ - 4);
+        lc.flipCellState(centerI - 4 + i, centerJ - 3);
+
+        lc.flipCellState(centerI + 4 - i, centerJ + 4);
+        lc.flipCellState(centerI + 4 - i, centerJ + 3);
+
+        lc.flipCellState(centerI - 4, centerJ + 4 - i);
+        lc.flipCellState(centerI - 3, centerJ + 4 - i);
+
+        lc.flipCellState(centerI + 4, centerJ - 4 + i);
+        lc.flipCellState(centerI + 3, centerJ - 4 + i);
+    }
 }
 
 // draw a horizontal line in the terminal with a given width
@@ -53,7 +69,7 @@ void drawField(const LifeCore& lc)
         std::cout << "| ";
         // cells
         for (int j = 0; j < lc.numCols(); ++j)
-            std::cout << (lc.getCellState(i,j) ? "x " : ". ");
+            std::cout << (lc.getCellState(i,j) ? "x " : "  ");
         // right boundary
         std::cout << "|\n";
     }
@@ -74,7 +90,7 @@ int main(void)
     {
        drawField(lc);
        lc.updateCells();
-       std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+       std::this_thread::sleep_for(std::chrono::milliseconds(250));
     }
     return 0;
 }
