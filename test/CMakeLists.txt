@@ -5,11 +5,11 @@ add_executable(
 
 target_link_libraries(
     unit_tests
-    gtest_main
+    GTest::gtest_main
     lifeCore
     )
 
-target_include_directories(unit_tests PRIVATE "${PROJECT_SOURCE_DIR}/src")
+target_include_directories(unit_tests PRIVATE ${GTEST_INCLUDE_DIR} ${PROJECT_SOURCE_DIR}/src)
 
 
 add_test(
